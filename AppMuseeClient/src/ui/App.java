@@ -32,6 +32,9 @@ import utils.UtilsFonction;
 public class App extends javax.swing.JFrame {
 
     private User user;
+    private Employe empi;
+    private Exposition expi;
+    private User usi;
     List<Artiste> artisteList = new ArrayList<>();
     List<Exposition> expositionList = new ArrayList<>();
     List<Exposition> expositionListD = new ArrayList<>();
@@ -199,7 +202,6 @@ public class App extends javax.swing.JFrame {
         elementOmit.add("artisteList");
         elementOmit.add("oeuvreList");
         elementOmit.add("id");
-
         try {
             userList = Utils.getiUser().allUser();
             UtilsFonction.displayDataInTable(userList, utilisateur_tableau, elementOmit);
@@ -211,7 +213,6 @@ public class App extends javax.swing.JFrame {
     public App(User user) {
         initComponents();
         setLocationRelativeTo(null);
-
         content_panel.setVisible(false);
         this.user = user;
         Utils.init();
@@ -232,9 +233,16 @@ public class App extends javax.swing.JFrame {
             employeh_btn.setVisible(false);
             hemploye_pn.setVisible(false);
             houeuvre_pn.setVisible(false);
+                huser_pn.setVisible(false);
         }
-
+        modifier_btn.setEnabled(false);
+        supprimer_btn.setEnabled(false);
+        supprimerExpos_btn.setEnabled(false);
+        modifierExposition_btn.setEnabled(false);
         montant_txt.setEnabled(false);
+        supprimerUser_btn.setEnabled(false);
+        bloquer_btn.setEnabled(false);
+        debloquerUser_btn.setEnabled(false);
 
     }
 
@@ -263,6 +271,7 @@ public class App extends javax.swing.JFrame {
         billeth_btn = new javax.swing.JLabel();
         aartisteh_btn = new javax.swing.JLabel();
         visiteurh_btn = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         content_panel = new javax.swing.JPanel();
         artiste_panel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -270,6 +279,7 @@ public class App extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         artistes_tableau = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
+        jLabel57 = new javax.swing.JLabel();
         visiteur_panel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -303,6 +313,8 @@ public class App extends javax.swing.JFrame {
         annuleExposition_btn = new javax.swing.JLabel();
         addExposition_btn = new javax.swing.JLabel();
         aff_btn = new javax.swing.JButton();
+        supprimerExpos_btn = new javax.swing.JButton();
+        modifierExposition_btn = new javax.swing.JButton();
         oeuvre_panel = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -333,6 +345,8 @@ public class App extends javax.swing.JFrame {
         annuleOeuvre_btn = new javax.swing.JLabel();
         addOeuvre_btn = new javax.swing.JLabel();
         listOeuvre_btn = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         billet_panel = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
@@ -357,6 +371,8 @@ public class App extends javax.swing.JFrame {
         billetTableau = new javax.swing.JTable();
         annuleBillet_btn = new javax.swing.JLabel();
         addBillet_btn = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         employe_panel = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
@@ -379,6 +395,8 @@ public class App extends javax.swing.JFrame {
         adresse_txt = new javax.swing.JTextField();
         annuleEmployee_btn = new javax.swing.JLabel();
         addEmployee_btn = new javax.swing.JLabel();
+        modifier_btn = new javax.swing.JButton();
+        supprimer_btn = new javax.swing.JButton();
         user_panel = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         jLabel38 = new javax.swing.JLabel();
@@ -393,7 +411,9 @@ public class App extends javax.swing.JFrame {
         jLabel47 = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
         utilisateur_tableau = new javax.swing.JTable();
-        supprimerUser_btn = new javax.swing.JLabel();
+        supprimerUser_btn = new javax.swing.JButton();
+        debloquerUser_btn = new javax.swing.JButton();
+        bloquer_btn = new javax.swing.JButton();
         heaader = new javax.swing.JPanel();
         hclient_pn = new javax.swing.JLabel();
         huser_pn = new javax.swing.JLabel();
@@ -437,11 +457,13 @@ public class App extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        aacceuil_pn.setBackground(new java.awt.Color(0, 0, 0));
+        aacceuil_pn.setBackground(new java.awt.Color(204, 204, 204));
+        aacceuil_pn.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel44.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel44.setForeground(new java.awt.Color(255, 255, 255));
         jLabel44.setText("BIENVENUIE SUR MUSEE_GEST");
+        aacceuil_pn.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 368, 50));
 
         oeuvreh_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         oeuvreh_btn.setForeground(new java.awt.Color(255, 255, 255));
@@ -455,6 +477,7 @@ public class App extends javax.swing.JFrame {
                 oeuvreh_btnMouseEntered(evt);
             }
         });
+        aacceuil_pn.add(oeuvreh_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 182, -1));
 
         expositionh_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         expositionh_btn.setForeground(new java.awt.Color(255, 255, 255));
@@ -468,6 +491,7 @@ public class App extends javax.swing.JFrame {
                 expositionh_btnMouseEntered(evt);
             }
         });
+        aacceuil_pn.add(expositionh_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(641, 96, -1, -1));
 
         employeh_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         employeh_btn.setForeground(new java.awt.Color(255, 255, 255));
@@ -481,6 +505,7 @@ public class App extends javax.swing.JFrame {
                 employeh_btnMouseEntered(evt);
             }
         });
+        aacceuil_pn.add(employeh_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, -1));
 
         billeth_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         billeth_btn.setForeground(new java.awt.Color(255, 255, 255));
@@ -494,6 +519,7 @@ public class App extends javax.swing.JFrame {
                 billeth_btnMouseEntered(evt);
             }
         });
+        aacceuil_pn.add(billeth_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(641, 312, 218, -1));
 
         aartisteh_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         aartisteh_btn.setForeground(new java.awt.Color(255, 255, 255));
@@ -507,6 +533,7 @@ public class App extends javax.swing.JFrame {
                 aartisteh_btnMouseEntered(evt);
             }
         });
+        aacceuil_pn.add(aartisteh_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 88, 182, -1));
 
         visiteurh_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         visiteurh_btn.setForeground(new java.awt.Color(255, 255, 255));
@@ -520,56 +547,11 @@ public class App extends javax.swing.JFrame {
                 visiteurh_btnMouseEntered(evt);
             }
         });
+        aacceuil_pn.add(visiteurh_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 350, 182, -1));
 
-        javax.swing.GroupLayout aacceuil_pnLayout = new javax.swing.GroupLayout(aacceuil_pn);
-        aacceuil_pn.setLayout(aacceuil_pnLayout);
-        aacceuil_pnLayout.setHorizontalGroup(
-            aacceuil_pnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(aacceuil_pnLayout.createSequentialGroup()
-                .addGroup(aacceuil_pnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(aacceuil_pnLayout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(aartisteh_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(aacceuil_pnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(aacceuil_pnLayout.createSequentialGroup()
-                                .addGap(67, 67, 67)
-                                .addComponent(oeuvreh_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(aacceuil_pnLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(aacceuil_pnLayout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(employeh_btn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(visiteurh_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64)))
-                .addGroup(aacceuil_pnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(expositionh_btn)
-                    .addComponent(billeth_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-        aacceuil_pnLayout.setVerticalGroup(
-            aacceuil_pnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(aacceuil_pnLayout.createSequentialGroup()
-                .addGroup(aacceuil_pnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(aacceuil_pnLayout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addGroup(aacceuil_pnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(oeuvreh_btn)
-                            .addComponent(aartisteh_btn)
-                            .addComponent(expositionh_btn)))
-                    .addGroup(aacceuil_pnLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(57, 57, 57)
-                .addGroup(aacceuil_pnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(billeth_btn)
-                    .addGroup(aacceuil_pnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(employeh_btn)
-                        .addComponent(visiteurh_btn)))
-                .addContainerGap(316, Short.MAX_VALUE))
-        );
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/Capture d'écran 2023-07-31 155046.png"))); // NOI18N
+        aacceuil_pn.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1050, 770));
 
         artiste_panel.setBackground(new java.awt.Color(0, 204, 204));
 
@@ -599,16 +581,17 @@ public class App extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/3d-casual-life-black-girl-painting.png"))); // NOI18N
         jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 260, 420));
+        jPanel1.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1040, 680));
 
         javax.swing.GroupLayout artiste_panelLayout = new javax.swing.GroupLayout(artiste_panel);
         artiste_panel.setLayout(artiste_panelLayout);
         artiste_panelLayout.setHorizontalGroup(
             artiste_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1033, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         artiste_panelLayout.setVerticalGroup(
             artiste_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 679, Short.MAX_VALUE)
         );
 
         visiteur_panel.setBackground(new java.awt.Color(51, 255, 0));
@@ -644,7 +627,7 @@ public class App extends javax.swing.JFrame {
         visiteur_panel.setLayout(visiteur_panelLayout);
         visiteur_panelLayout.setHorizontalGroup(
             visiteur_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1027, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1034, Short.MAX_VALUE)
         );
         visiteur_panelLayout.setVerticalGroup(
             visiteur_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -673,6 +656,11 @@ public class App extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        exposition_tableau.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exposition_tableauMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(exposition_tableau);
 
         jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 590, 240));
@@ -714,6 +702,7 @@ public class App extends javax.swing.JFrame {
         description_txt.setBackground(new java.awt.Color(255, 255, 255));
         description_txt.setColumns(20);
         description_txt.setForeground(new java.awt.Color(0, 0, 0));
+        description_txt.setLineWrap(true);
         description_txt.setRows(5);
         jScrollPane5.setViewportView(description_txt);
 
@@ -838,6 +827,11 @@ public class App extends javax.swing.JFrame {
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 590, 300));
 
         annuleExposition_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/i/icons8_undelete_48px.png"))); // NOI18N
+        annuleExposition_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                annuleExposition_btnMouseClicked(evt);
+            }
+        });
         jPanel3.add(annuleExposition_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 170, 50, 50));
 
         addExposition_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/i/icons8_Plus_48px_1.png"))); // NOI18N
@@ -859,11 +853,32 @@ public class App extends javax.swing.JFrame {
         });
         jPanel3.add(aff_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 110, -1));
 
+        supprimerExpos_btn.setBackground(new java.awt.Color(255, 51, 51));
+        supprimerExpos_btn.setForeground(new java.awt.Color(0, 0, 0));
+        supprimerExpos_btn.setText("Supprimer");
+        supprimerExpos_btn.setToolTipText("");
+        supprimerExpos_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supprimerExpos_btnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(supprimerExpos_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 610, 90, -1));
+
+        modifierExposition_btn.setBackground(new java.awt.Color(153, 204, 255));
+        modifierExposition_btn.setForeground(new java.awt.Color(0, 0, 0));
+        modifierExposition_btn.setText("Modifier");
+        modifierExposition_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifierExposition_btnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(modifierExposition_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 610, 90, -1));
+
         javax.swing.GroupLayout exposition_panelLayout = new javax.swing.GroupLayout(exposition_panel);
         exposition_panel.setLayout(exposition_panelLayout);
         exposition_panelLayout.setHorizontalGroup(
             exposition_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1033, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1040, Short.MAX_VALUE)
         );
         exposition_panelLayout.setVerticalGroup(
             exposition_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1118,11 +1133,17 @@ public class App extends javax.swing.JFrame {
         });
         jPanel5.add(listOeuvre_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 110, -1));
 
+        jButton3.setText("Modifier");
+        jPanel5.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 520, -1, -1));
+
+        jButton4.setText("Annuler");
+        jPanel5.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 520, -1, -1));
+
         javax.swing.GroupLayout oeuvre_panelLayout = new javax.swing.GroupLayout(oeuvre_panel);
         oeuvre_panel.setLayout(oeuvre_panelLayout);
         oeuvre_panelLayout.setHorizontalGroup(
             oeuvre_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1033, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1040, Short.MAX_VALUE)
         );
         oeuvre_panelLayout.setVerticalGroup(
             oeuvre_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1332,11 +1353,17 @@ public class App extends javax.swing.JFrame {
         });
         jPanel8.add(addBillet_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 50, 60));
 
+        jButton1.setText("Annuler");
+        jPanel8.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 520, -1, -1));
+
+        jButton2.setText("Modifier");
+        jPanel8.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 520, -1, -1));
+
         javax.swing.GroupLayout billet_panelLayout = new javax.swing.GroupLayout(billet_panel);
         billet_panel.setLayout(billet_panelLayout);
         billet_panelLayout.setHorizontalGroup(
             billet_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 1033, Short.MAX_VALUE)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 1040, Short.MAX_VALUE)
         );
         billet_panelLayout.setVerticalGroup(
             billet_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1412,6 +1439,11 @@ public class App extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        employe_tableau.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                employe_tableauMouseClicked(evt);
+            }
+        });
         jScrollPane8.setViewportView(employe_tableau);
 
         salaire_txt.setBackground(new java.awt.Color(255, 255, 255));
@@ -1510,6 +1542,11 @@ public class App extends javax.swing.JFrame {
         jPanel11.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 550, 460));
 
         annuleEmployee_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/i/icons8_undelete_48px.png"))); // NOI18N
+        annuleEmployee_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                annuleEmployee_btnMouseClicked(evt);
+            }
+        });
         jPanel11.add(annuleEmployee_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 50, 50));
 
         addEmployee_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/i/icons8_Plus_48px_1.png"))); // NOI18N
@@ -1518,13 +1555,34 @@ public class App extends javax.swing.JFrame {
                 addEmployee_btnMouseClicked(evt);
             }
         });
-        jPanel11.add(addEmployee_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 50, 60));
+        jPanel11.add(addEmployee_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 510, 50, 60));
+
+        modifier_btn.setBackground(new java.awt.Color(153, 204, 255));
+        modifier_btn.setForeground(new java.awt.Color(0, 0, 0));
+        modifier_btn.setText("Modifier");
+        modifier_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifier_btnActionPerformed(evt);
+            }
+        });
+        jPanel11.add(modifier_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 520, 90, -1));
+
+        supprimer_btn.setBackground(new java.awt.Color(255, 51, 51));
+        supprimer_btn.setForeground(new java.awt.Color(0, 0, 0));
+        supprimer_btn.setText("Supprimer");
+        supprimer_btn.setToolTipText("");
+        supprimer_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supprimer_btnActionPerformed(evt);
+            }
+        });
+        jPanel11.add(supprimer_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 520, 90, -1));
 
         javax.swing.GroupLayout employe_panelLayout = new javax.swing.GroupLayout(employe_panel);
         employe_panel.setLayout(employe_panelLayout);
         employe_panelLayout.setHorizontalGroup(
             employe_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 1033, Short.MAX_VALUE)
+            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 1040, Short.MAX_VALUE)
         );
         employe_panelLayout.setVerticalGroup(
             employe_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1583,9 +1641,39 @@ public class App extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        utilisateur_tableau.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                utilisateur_tableauMouseClicked(evt);
+            }
+        });
         jScrollPane9.setViewportView(utilisateur_tableau);
 
-        supprimerUser_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/i/icons8_undelete_48px.png"))); // NOI18N
+        supprimerUser_btn.setBackground(new java.awt.Color(255, 0, 0));
+        supprimerUser_btn.setForeground(new java.awt.Color(0, 0, 0));
+        supprimerUser_btn.setText("Supprimer");
+        supprimerUser_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supprimerUser_btnActionPerformed(evt);
+            }
+        });
+
+        debloquerUser_btn.setBackground(new java.awt.Color(102, 204, 255));
+        debloquerUser_btn.setForeground(new java.awt.Color(0, 0, 0));
+        debloquerUser_btn.setText("Autoriser");
+        debloquerUser_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                debloquerUser_btnActionPerformed(evt);
+            }
+        });
+
+        bloquer_btn.setBackground(new java.awt.Color(102, 0, 51));
+        bloquer_btn.setForeground(new java.awt.Color(0, 0, 0));
+        bloquer_btn.setText("Bloquer");
+        bloquer_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bloquer_btnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -1594,22 +1682,29 @@ public class App extends javax.swing.JFrame {
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addComponent(jLabel43)
-                        .addGap(18, 18, 18)
-                        .addComponent(userName_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel47)
-                        .addGap(24, 24, 24)
-                        .addComponent(userEmail_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addComponent(jLabel46)
-                        .addGap(18, 18, 18)
-                        .addComponent(userRole_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(118, 118, 118)
-                        .addComponent(supprimerUser_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel16Layout.createSequentialGroup()
+                            .addComponent(jLabel46)
+                            .addGap(18, 18, 18)
+                            .addComponent(userRole_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(debloquerUser_btn)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(supprimerUser_btn))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel16Layout.createSequentialGroup()
+                            .addComponent(jLabel43)
+                            .addGap(18, 18, 18)
+                            .addComponent(userName_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel47)
+                            .addGap(24, 24, 24)
+                            .addComponent(userEmail_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(27, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bloquer_btn)
+                .addGap(134, 134, 134))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1621,12 +1716,14 @@ public class App extends javax.swing.JFrame {
                     .addComponent(jLabel47)
                     .addComponent(userEmail_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel46)
-                        .addComponent(userRole_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(supprimerUser_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel46)
+                    .addComponent(userRole_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(supprimerUser_btn)
+                    .addComponent(debloquerUser_btn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bloquer_btn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
@@ -1645,7 +1742,7 @@ public class App extends javax.swing.JFrame {
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jPanel14.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 550, 460));
@@ -1654,11 +1751,11 @@ public class App extends javax.swing.JFrame {
         user_panel.setLayout(user_panelLayout);
         user_panelLayout.setHorizontalGroup(
             user_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, 1033, Short.MAX_VALUE)
+            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, 1040, Short.MAX_VALUE)
         );
         user_panelLayout.setVerticalGroup(
             user_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
+            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
         );
 
         heaader.setBackground(new java.awt.Color(0, 102, 102));
@@ -1751,8 +1848,8 @@ public class App extends javax.swing.JFrame {
             }
         });
 
-        usernaame_labele.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        usernaame_labele.setForeground(new java.awt.Color(0, 0, 0));
+        usernaame_labele.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
+        usernaame_labele.setForeground(new java.awt.Color(255, 51, 51));
         usernaame_labele.setText("jLabel44");
 
         javax.swing.GroupLayout heaaderLayout = new javax.swing.GroupLayout(heaader);
@@ -1777,9 +1874,11 @@ public class App extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(heaaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(heaaderLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 230, Short.MAX_VALUE)
                         .addComponent(deconnexion_pn))
-                    .addComponent(usernaame_labele, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)))
+                    .addGroup(heaaderLayout.createSequentialGroup()
+                        .addComponent(usernaame_labele, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         heaaderLayout.setVerticalGroup(
             heaaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1856,7 +1955,7 @@ public class App extends javax.swing.JFrame {
         affectation_panel.setLayout(affectation_panelLayout);
         affectation_panelLayout.setHorizontalGroup(
             affectation_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, 1021, Short.MAX_VALUE)
+            .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
         );
         affectation_panelLayout.setVerticalGroup(
             affectation_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1898,7 +1997,7 @@ public class App extends javax.swing.JFrame {
             listeOeuvre_paanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(listeOeuvre_paanelLayout.createSequentialGroup()
                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 1005, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 22, Short.MAX_VALUE))
+                .addGap(0, 29, Short.MAX_VALUE))
         );
         listeOeuvre_paanelLayout.setVerticalGroup(
             listeOeuvre_paanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1942,7 +2041,7 @@ public class App extends javax.swing.JFrame {
             content_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(content_panelLayout.createSequentialGroup()
                 .addComponent(heaader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 679, Short.MAX_VALUE))
+                .addGap(0, 691, Short.MAX_VALUE))
             .addGroup(content_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content_panelLayout.createSequentialGroup()
                     .addGap(0, 87, Short.MAX_VALUE)
@@ -1986,7 +2085,7 @@ public class App extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1033, Short.MAX_VALUE)
+            .addGap(0, 1040, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(content_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1994,7 +2093,7 @@ public class App extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 766, Short.MAX_VALUE)
+            .addGap(0, 778, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -2539,7 +2638,6 @@ public class App extends javax.swing.JFrame {
             String description = description_txt.getText();
             String heureDebut = heureDebut_txt.getText();
             String heureFin = heureFin_txt.getText();
-                    
 
             if (date_debut.before(new Date()) || date_fin.before(date_debut)) {
                 JOptionPane.showMessageDialog(null, "incoherence de date");
@@ -2560,16 +2658,17 @@ public class App extends javax.swing.JFrame {
                 return; // ou utilisez "return;" pour terminer la méthode sans valeur de retour
             }
 
-
             if (MyFonction.testFields(nomExposition, description, prixVip_txt.getText(), prix_classique_txt.getText())) {
                 JOptionPane.showMessageDialog(null, "Veuillez remplire tout les champs ou verifier la taille des textes");
                 return;
             }
-            Exposition exp = new Exposition(nomExposition,heureDebut, heureFin, date_debut, date_fin, description, prix_vip, prix_classique, user);
+            Exposition exp = new Exposition(nomExposition, heureDebut, heureFin, date_debut, date_fin, description, prix_vip, prix_classique, user);
             Exposition expadd = Utils.getiExposition().addExposition(exp);
 
             if (expadd != null) {
                 MyFonction.clearFormExposition(nomExposition_txt, prixVip_txt, prix_classique_txt, description_txt, fin_date, debut_date);
+                heureDebut_txt.setText("");
+                heureFin_txt.setText("");
                 JOptionPane.showMessageDialog(null, "Exposition a ete ajouter avec succes");
                 affichageExposition();
             }
@@ -2740,7 +2839,6 @@ public class App extends javax.swing.JFrame {
 
                 String exponame = exposition_cbx.getSelectedItem().toString();
                 Exposition ea = Utils.getiExposition().findExpositionByname(exponame);
-                
 
                 if (typeBillet_cbx.getSelectedItem().toString().equalsIgnoreCase("CLASSIQUE")) {
                     montant_txt.setText(String.valueOf(ea.getPrix_clssique()));
@@ -2770,7 +2868,6 @@ public class App extends javax.swing.JFrame {
 
                 String exponame = exposition_cbx.getSelectedItem().toString();
                 Exposition ea = Utils.getiExposition().findExpositionByname(exponame);
-               
 
                 if (typeBillet_cbx.getSelectedItem().toString().equalsIgnoreCase("CLASSIQUE")) {
                     montant_txt.setText(String.valueOf(ea.getPrix_clssique()));
@@ -2789,10 +2886,323 @@ public class App extends javax.swing.JFrame {
 
     }//GEN-LAST:event_typeBillet_cbxActionPerformed
 
+    private void employe_tableauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employe_tableauMouseClicked
+        // TODO add your handling code here:
+
+        int selectedRow = employe_tableau.getSelectedRow();
+
+        if (selectedRow == -1) {
+            return;
+        }
+        empi = employeList.get(selectedRow);
+        employeNom_txt.setText(empi.getNom());
+        employePrenom_txt.setText(empi.getPrenom());
+        tel_txt.setText(empi.getTelephone());
+        adresse_txt.setText(empi.getAdresse());
+        poste_txt.setText(empi.getPosition());
+        salaire_txt.setText(String.valueOf(empi.getSalaire()));
+        addEmployee_btn.setVisible(false);
+        modifier_btn.setEnabled(true);
+        supprimer_btn.setEnabled(true);
+
+
+    }//GEN-LAST:event_employe_tableauMouseClicked
+
+    private void supprimer_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimer_btnActionPerformed
+        // TODO add your handling code here:
+        try {
+            Utils.getiEmploye().deleteEmploye(empi.getId());
+            JOptionPane.showMessageDialog(null, "employer a ete supprimer avec succes");
+            MyFonction.clearFormEmployer(employeNom_txt, employePrenom_txt, tel_txt, adresse_txt, poste_txt, salaire_txt);
+            affichageEmploye();
+            addEmployee_btn.setVisible(true);
+            modifier_btn.setEnabled(false);
+            supprimer_btn.setEnabled(false);
+
+        } catch (RemoteException ex) {
+            System.err.println("Erreur : " + ex.getMessage());
+
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_supprimer_btnActionPerformed
+
+    private void modifier_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifier_btnActionPerformed
+        // TODO add your handling code here:
+        try {
+
+            String nomEmp = employeNom_txt.getText();
+            String prenomEmp = employePrenom_txt.getText();
+            String telEmp = tel_txt.getText();
+            String adresse = adresse_txt.getText();
+            String poste = poste_txt.getText();
+            float salaire;
+
+            try {
+                salaire = Float.parseFloat(salaire_txt.getText());
+
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Veuillez saisire des nombres");
+
+                return;
+            }
+
+            if (MyFonction.controleTel(telEmp)) {
+                JOptionPane.showMessageDialog(null, "format du numero telephone est incorecte ");
+                return;
+            }
+
+            if (MyFonction.testFields(nomEmp, prenomEmp, telEmp, adresse, poste, salaire_txt.getText())) {
+                JOptionPane.showMessageDialog(null, "Veuillez remplire tout les champs ou verifier la taille des textes");
+                return;
+            }
+
+            empi.setNom(nomEmp);
+            empi.setAdresse(adresse);
+            empi.setPosition(poste);
+            empi.setPrenom(prenomEmp);
+            empi.setTelephone(telEmp);
+            empi.setSalaire(salaire);
+            Employe addEmp = Utils.getiEmploye().updateEmploye(empi);
+
+            if (addEmp != null) {
+                MyFonction.clearFormEmployer(employeNom_txt, employePrenom_txt, tel_txt, adresse_txt, poste_txt, salaire_txt);
+                JOptionPane.showMessageDialog(null, "Employe a ete modifier avec succes");
+                affichageEmploye();
+                addEmployee_btn.setVisible(true);
+                modifier_btn.setEnabled(false);
+                supprimer_btn.setEnabled(false);
+            }
+        } catch (RemoteException ex) {
+            System.err.println("Erreur : " + ex.getMessage());
+
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_modifier_btnActionPerformed
+
+    private void annuleEmployee_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_annuleEmployee_btnMouseClicked
+        // TODO add your handling code here:
+        MyFonction.clearFormEmployer(employeNom_txt, employePrenom_txt, tel_txt, adresse_txt, poste_txt, salaire_txt);
+        addEmployee_btn.setVisible(true);
+        modifier_btn.setEnabled(false);
+        supprimer_btn.setEnabled(false);
+    }//GEN-LAST:event_annuleEmployee_btnMouseClicked
+
+    private void supprimerExpos_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerExpos_btnActionPerformed
+        try {
+            Utils.getiExposition().deleteExposition(expi.getId());
+            heureDebut_txt.setText("");
+            heureFin_txt.setText("");
+            MyFonction.clearFormExposition(nomExposition_txt, prixVip_txt, prix_classique_txt, description_txt, fin_date, debut_date);
+
+            JOptionPane.showMessageDialog(null, "exposition a ete supprimer avec succes");
+            affichageExposition();
+
+        } catch (RemoteException ex) {
+            System.err.println("Erreur : " + ex.getMessage());
+
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_supprimerExpos_btnActionPerformed
+
+    private void modifierExposition_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifierExposition_btnActionPerformed
+        // TODO add your handling code here:
+        try {
+            String nomExposition = nomExposition_txt.getText();
+            Date date_debut = debut_date.getDate();
+            Date date_fin = fin_date.getDate();
+            float prix_vip;
+            float prix_classique;
+            String description = description_txt.getText();
+            String heureDebut = heureDebut_txt.getText();
+            String heureFin = heureFin_txt.getText();
+
+            if (date_debut.before(new Date()) || date_fin.before(date_debut)) {
+                JOptionPane.showMessageDialog(null, "incoherence de date");
+                return;
+
+            }
+
+            try {
+                prix_vip = Float.parseFloat(prixVip_txt.getText());
+                prix_classique = Float.parseFloat(prix_classique_txt.getText());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Veuillez saisire des nombres");
+
+                return;
+            }
+            if (!MyFonction.isValidTime(heureDebut) || !MyFonction.isValidTime(heureFin)) {
+                JOptionPane.showMessageDialog(null, "Heure au format invalide. Exemple : 09:05");
+                return; // ou utilisez "return;" pour terminer la méthode sans valeur de retour
+            }
+
+            if (MyFonction.testFields(nomExposition, description, prixVip_txt.getText(), prix_classique_txt.getText())) {
+                JOptionPane.showMessageDialog(null, "Veuillez remplire tout les champs ou verifier la taille des textes");
+                return;
+            }
+
+            expi.setNom(nomExposition);
+            expi.setDatedebut(date_debut);
+            expi.setDatefin(date_fin);
+            expi.setPrix_vip(prix_vip);
+            expi.setPrix_clssique(prix_classique);
+            expi.setDescription(description);
+            expi.setHeurDebut(heureDebut);
+            expi.setHeurFin(heureFin);
+
+            Exposition expadd = Utils.getiExposition().updateExposition(expi);
+
+            if (expadd != null) {
+                MyFonction.clearFormExposition(nomExposition_txt, prixVip_txt, prix_classique_txt, description_txt, fin_date, debut_date);
+                heureDebut_txt.setText("");
+                heureFin_txt.setText("");
+
+                JOptionPane.showMessageDialog(null, "Exposition a ete modifier avec succes");
+                affichageExposition();
+                addExposition_btn.setVisible(true);
+                modifierExposition_btn.setEnabled(false);
+                supprimerExpos_btn.setEnabled(false);
+            }
+
+        } catch (RemoteException ex) {
+            System.err.println("Erreur : " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Une erreur c'est produite veuillez controler vos saisie et resayer");
+
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_modifierExposition_btnActionPerformed
+
+    private void exposition_tableauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exposition_tableauMouseClicked
+        // TODO add your handling code here:
+        int selectedRow = exposition_tableau.getSelectedRow();
+
+        if (selectedRow == -1) {
+            return;
+        }
+
+        expi = expositionList.get(selectedRow);
+
+        expi = expositionList.get(selectedRow);
+
+        nomExposition_txt.setText(expi.getNom());
+        debut_date.setDate(expi.getDatedebut());
+        fin_date.setDate(expi.getDatefin());
+        prixVip_txt.setText(String.valueOf(expi.getPrix_vip()));
+        prix_classique_txt.setText(String.valueOf(expi.getPrix_clssique()));
+        description_txt.setText(expi.getDescription());
+        heureDebut_txt.setText(expi.getHeurDebut());
+        heureFin_txt.setText(expi.getHeurFin());
+
+        addExposition_btn.setVisible(false);
+        modifierExposition_btn.setEnabled(true);
+        supprimerExpos_btn.setEnabled(true);
+
+
+    }//GEN-LAST:event_exposition_tableauMouseClicked
+
+    private void annuleExposition_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_annuleExposition_btnMouseClicked
+        // TODO add your handling code here:
+        MyFonction.clearFormExposition(nomExposition_txt, prixVip_txt, prix_classique_txt, description_txt, fin_date, debut_date);
+        addExposition_btn.setVisible(true);
+        modifierExposition_btn.setEnabled(false);
+        supprimerExpos_btn.setEnabled(false);
+        heureDebut_txt.setText("");
+        heureFin_txt.setText("");
+    }//GEN-LAST:event_annuleExposition_btnMouseClicked
+
+    private void utilisateur_tableauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_utilisateur_tableauMouseClicked
+
+        int selectedRow = utilisateur_tableau.getSelectedRow();
+
+        if (selectedRow == -1) {
+            return;
+        }
+        usi = userList.get(selectedRow);
+        userEmail_txt.setText(usi.getEmail());
+        userName_txt.setText(usi.getUsername());
+        userRole_txt.setText(usi.getRole());
+        supprimerUser_btn.setEnabled(true);
+        bloquer_btn.setEnabled(true);
+        debloquerUser_btn.setEnabled(true);
+    }//GEN-LAST:event_utilisateur_tableauMouseClicked
+
+    private void debloquerUser_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_debloquerUser_btnActionPerformed
+        // TODO add your handling code here:
+        try {
+
+            usi.setEtat("ACTIVER");
+            Utils.getiUser().updateUser(usi);
+
+            userEmail_txt.setText("");
+            userName_txt.setText("");
+            userRole_txt.setText("");
+            supprimerUser_btn.setEnabled(false);
+        bloquer_btn.setEnabled(false);
+        debloquerUser_btn.setEnabled(false);
+
+            JOptionPane.showMessageDialog(null, "Compte activer");
+            affichageUser();
+
+        } catch (RemoteException ex) {
+            System.err.println("Erreur : " + ex.getMessage());
+
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_debloquerUser_btnActionPerformed
+
+    private void bloquer_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bloquer_btnActionPerformed
+        // TODO add your handling code here:
+        try {
+
+            usi.setEtat("BLOQUER");
+            Utils.getiUser().updateUser(usi);
+
+            userEmail_txt.setText("");
+            userName_txt.setText("");
+            userRole_txt.setText("");
+             supprimerUser_btn.setEnabled(false);
+        bloquer_btn.setEnabled(false);
+        debloquerUser_btn.setEnabled(false);
+            JOptionPane.showMessageDialog(null, "Compte bloquer");
+            affichageUser();
+
+        } catch (RemoteException ex) {
+            System.err.println("Erreur : " + ex.getMessage());
+
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_bloquer_btnActionPerformed
+
+    private void supprimerUser_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerUser_btnActionPerformed
+        // TODO add your handling code here:
+           try {
+
+           
+            Utils.getiUser().deleteUser(usi.getId());
+
+            userEmail_txt.setText("");
+            userName_txt.setText("");
+            userRole_txt.setText("");
+             supprimerUser_btn.setEnabled(false);
+        bloquer_btn.setEnabled(false);
+        debloquerUser_btn.setEnabled(false);
+
+            JOptionPane.showMessageDialog(null, "Compte supprimer");
+            affichageUser();
+
+        } catch (RemoteException ex) {
+            System.err.println("Erreur : " + ex.getMessage());
+
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_supprimerUser_btnActionPerformed
+
     /**
      * @param args the command line arguments
      */
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel aacceuil_pn;
@@ -2819,12 +3229,14 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JPanel billet_panel;
     private javax.swing.JLabel billeth_btn;
     private javax.swing.JTextArea biographie_txt;
+    private javax.swing.JButton bloquer_btn;
     private javax.swing.JTextField clientEmail_txt;
     private javax.swing.JTextField clientNom_txt;
     private javax.swing.JTextField clientPrenom_txt;
     private com.toedter.calendar.JDateChooser client_date;
     private javax.swing.JPanel content_panel;
     private javax.swing.JTextField dateOeuvre_txt;
+    private javax.swing.JButton debloquerUser_btn;
     private com.toedter.calendar.JDateChooser debut_date;
     private javax.swing.JLabel deconnexion_pn;
     private javax.swing.JTextArea description_txt;
@@ -2850,6 +3262,10 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JLabel houeuvre_pn;
     private javax.swing.JLabel hticket_pn;
     private javax.swing.JLabel huser_pn;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2860,6 +3276,7 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -2901,6 +3318,7 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -2936,6 +3354,8 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JButton listOeuvre_btn;
     private javax.swing.JPanel listeOeuvre_paanel;
+    private javax.swing.JButton modifierExposition_btn;
+    private javax.swing.JButton modifier_btn;
     private javax.swing.JTextField montant_txt;
     private javax.swing.JComboBox<String> nationlite_cbx;
     private javax.swing.JTextField nomExposition_txt;
@@ -2950,7 +3370,9 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JTextField prix_classique_txt;
     private javax.swing.JTextField prix_txt;
     private javax.swing.JTextField salaire_txt;
-    private javax.swing.JLabel supprimerUser_btn;
+    private javax.swing.JButton supprimerExpos_btn;
+    private javax.swing.JButton supprimerUser_btn;
+    private javax.swing.JButton supprimer_btn;
     private javax.swing.JTextField tel_txt;
     private javax.swing.JComboBox<String> typeBillet_cbx;
     private javax.swing.JTextField userEmail_txt;

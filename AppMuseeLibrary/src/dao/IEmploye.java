@@ -16,5 +16,8 @@ import models.Employe;
 public interface IEmploye extends Remote {
     Employe addEmploye(Employe e) throws RemoteException;
     List<Employe> allEmploye() throws RemoteException;
+    Employe getEmployeById(int id) throws RemoteException; 
+    Employe updateEmploye(Employe e) throws RemoteException;
+    void deleteEmploye(int id) throws RemoteException;
     
 }

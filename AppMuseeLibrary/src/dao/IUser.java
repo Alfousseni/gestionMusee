@@ -23,5 +23,8 @@ public interface IUser extends Remote {
     User getConnexion(String login) throws RemoteException;
 
     User getUserMail(String email) throws RemoteException;
+    
+    User updateUser(User e) throws RemoteException;
+    void deleteUser(int id) throws RemoteException;
 
 }

@@ -61,5 +61,63 @@ public class EmployeService extends UnicastRemoteObject implements IEmploye {
             throw e;
         }
         return employeList;    }
+
+    @Override
+    public Employe updateEmploye(Employe e) throws RemoteException {
+       EntityTransaction et = null;
+        Employe employeUpdated;
+
+        try {
+            et = EM.getTransaction();
+            et.begin();
+            employeUpdated = EM.merge(e);
+            EM.flush();
+            et.commit();
+        } catch (Exception ex) {
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+            System.err.println("Erreur lors de la mise à jour de l'employe " + ex.getMessage());
+            throw new RemoteException("Erreur lors de la mise à jour de l'employe", ex);
+        }
+
+        return employeUpdated;
+    }
+
+    @Override
+    public void deleteEmploye(int id) throws RemoteException {
+        EntityTransaction et = null;
+
+        try {
+            et = EM.getTransaction();
+            et.begin();
+            Employe employeToDelete = EM.find(Employe.class, id);
+            if (employeToDelete != null) {
+                EM.remove(employeToDelete);
+                EM.flush();
+            }
+            et.commit();
+        } catch (Exception ex) {
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+            System.err.println("Erreur lors de la suppression de l'employe " + ex.getMessage());
+            throw new RemoteException("Erreur lors de la suppression de l'employe", ex);
+        }
+    }
+
+    @Override
+    public Employe getEmployeById(int id) throws RemoteException {
+        Employe employe = null;
+        try {
+            employe= EM.createNamedQuery("Employe.findById", Employe.class).
+                    setParameter("id", id)
+                    .getSingleResult();
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la recuperation des employe : " + e.getMessage());
+            throw e;
+        }
+        return employe;   
+    }
     
 }

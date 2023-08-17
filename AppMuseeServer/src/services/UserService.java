@@ -11,6 +11,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import models.Employe;
 import models.User;
 
 /**
@@ -18,8 +19,8 @@ import models.User;
  * @author couly
  */
 public class UserService extends UnicastRemoteObject implements IUser {
-    
-        EntityManager EM;
+
+    EntityManager EM;
 
     public UserService() throws RemoteException {
         EM = EntityManagerUtil.getEntityManagerFactory().createEntityManager();
@@ -27,12 +28,12 @@ public class UserService extends UnicastRemoteObject implements IUser {
 
     @Override
     public User addUser(User u) throws RemoteException {
-       EntityTransaction et = null;
-       
-       User usersaved;
-       
+        EntityTransaction et = null;
+
+        User usersaved;
+
         try {
-            
+
             et = EM.getTransaction();
             et.begin();
             EM.persist(u);
@@ -40,19 +41,19 @@ public class UserService extends UnicastRemoteObject implements IUser {
             et.commit();
             usersaved = u;
         } catch (Exception ex) {
-             if (et == null && et.isActive()) {
+            if (et == null && et.isActive()) {
                 et.rollback();
             }
             System.err.println("Erreur lors de l'insertion user " + ex.getMessage());
             throw ex;
         }
-        
+
         return usersaved;
-        } 
+    }
 
     @Override
     public List<User> allUser() throws RemoteException {
-         List<User> userList = null;
+        List<User> userList = null;
         try {
             userList = EM.createNamedQuery("User.findAll", User.class)
                     .getResultList();
@@ -63,12 +64,9 @@ public class UserService extends UnicastRemoteObject implements IUser {
         return userList;
     }
 
-   
-    
-
     @Override
     public User getConnexion(String login) {
-         User user = null;
+        User user = null;
 
         try {
             user = EM.createNamedQuery("User.findByUsername", User.class)
@@ -83,7 +81,7 @@ public class UserService extends UnicastRemoteObject implements IUser {
 
     @Override
     public User getUserMail(String email) throws RemoteException {
-      User user = null;
+        User user = null;
 
         try {
             user = EM.createNamedQuery("User.findByEmail", User.class)
@@ -95,6 +93,52 @@ public class UserService extends UnicastRemoteObject implements IUser {
         }
         return user;
     }
-    }
-    
 
+    @Override
+    public User updateUser(User e) throws RemoteException {
+        EntityTransaction et = null;
+
+        User userUpdate;
+
+        try {
+
+            et = EM.getTransaction();
+            et.begin();
+            userUpdate = EM.merge(e);
+
+            EM.flush();
+            et.commit();
+            userUpdate = e;
+        } catch (Exception ex) {
+            if (et == null && et.isActive()) {
+                et.rollback();
+            }
+            System.err.println("Erreur lors de l'insertion user " + ex.getMessage());
+            throw ex;
+        }
+
+        return userUpdate;
+    }
+
+    @Override
+    public void deleteUser(int id) throws RemoteException {
+        EntityTransaction et = null;
+
+        try {
+            et = EM.getTransaction();
+            et.begin();
+            User employeToDelete = EM.find(User.class, id);
+            if (employeToDelete != null) {
+                EM.remove(employeToDelete);
+                EM.flush();
+            }
+            et.commit();
+        } catch (Exception ex) {
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+            System.err.println("Erreur lors de la suppression de l'utilisateur " + ex.getMessage());
+            throw new RemoteException("Erreur lors de la suppression de l'utilisateur", ex);
+        }
+    }
+}

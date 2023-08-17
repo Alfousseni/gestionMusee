@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import models.Employe;
 import models.Exposition;
 import models.Oeuvre;
 
@@ -92,4 +93,52 @@ public class ExpositionService extends UnicastRemoteObject implements IExpositio
     }
         return ex;
     
-    }}
+    }
+
+    @Override
+    public Exposition updateExposition(Exposition e) throws RemoteException {
+        Exposition expositionsaved;
+        EntityTransaction et = null;
+
+        try {
+
+            et = EM.getTransaction();
+            et.begin();
+            expositionsaved = EM.merge(e);
+
+            EM.flush();
+            et.commit();
+            expositionsaved = e;
+        } catch (Exception ex) {
+            if (et == null && et.isActive()) {
+                et.rollback();
+            }
+            System.err.println("Erreur lors de l'insertion de l'exposition  " + ex.getMessage());
+            throw ex;
+        }
+
+        return expositionsaved;
+    }
+
+    @Override
+    public void deleteExposition(int id) throws RemoteException {
+           EntityTransaction et = null;
+
+        try {
+            et = EM.getTransaction();
+            et.begin();
+            Exposition expositionToDelete = EM.find(Exposition.class, id);
+            if (expositionToDelete != null) {
+                EM.remove(expositionToDelete);
+                EM.flush();
+            }
+            et.commit();
+        } catch (Exception ex) {
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+            System.err.println("Erreur lors de la suppression de l'employe " + ex.getMessage());
+            throw new RemoteException("Erreur lors de la suppression de l'employe", ex);
+        }
+    }
+}

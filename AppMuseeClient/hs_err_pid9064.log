@@ -1,0 +1,161 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 1048576 bytes for AllocateHeap
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Zero Based Compressed Oops mode in which the Java heap is
+#     placed in the first 32GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 32GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (memory/allocation.inline.hpp:61), pid=9064, tid=0x0000000000005ca0
+#
+# JRE version:  (8.0_372-b07) (build )
+# Java VM: OpenJDK 64-Bit Server VM (25.372-b07 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000001ef38758800):  JavaThread "Unknown thread" [_thread_in_vm, id=23712, stack(0x000000067ac00000,0x000000067ad00000)]
+
+Stack: [0x000000067ac00000,0x000000067ad00000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x000001ef38758800 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=23712, stack(0x000000067ac00000,0x000000067ad00000)]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+heap address: 0x00000006c2400000, size: 4060 MB, Compressed Oops mode: Zero based, Oop shift amount: 3
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 3
+Compressed class space size: 1073741824 Address: 0x00000007c0000000
+
+Heap:
+ PSYoungGen      total 75776K, used 1300K [0x000000076b700000, 0x0000000770b80000, 0x00000007c0000000)
+  eden space 65024K, 2% used [0x000000076b700000,0x000000076b8451f8,0x000000076f680000)
+  from space 10752K, 0% used [0x0000000770100000,0x0000000770100000,0x0000000770b80000)
+  to   space 10752K, 0% used [0x000000076f680000,0x000000076f680000,0x0000000770100000)
+ ParOldGen       total 173568K, used 0K [0x00000006c2400000, 0x00000006ccd80000, 0x000000076b700000)
+  object space 173568K, 0% used [0x00000006c2400000,0x00000006c2400000,0x00000006ccd80000)
+ Metaspace       used 800K, capacity 4480K, committed 4480K, reserved 1056768K
+  class space    used 77K, capacity 384K, committed 384K, reserved 1048576K
+
+Card table byte_map: [0x000001ef49690000,0x000001ef49e80000] byte_map_base: 0x000001ef4607e000
+
+Marking Bits: (ParMarkBitMap*) 0x00000000566563a0
+ Begin Bits: [0x000001ef4a3d0000, 0x000001ef4e340000)
+ End Bits:   [0x000001ef4e340000, 0x000001ef522b0000)
+
+Polling page: 0x000001ef38ac0000
+
+CodeCache: size=245760Kb used=328Kb max_used=328Kb free=245431Kb
+ bounds [0x000001ef3a2d0000, 0x000001ef3a540000, 0x000001ef492d0000]
+ total_blobs=58 nmethods=0 adapters=38
+ compilation: enabled
+
+Compilation events (0 events):
+No events
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (10 events):
+Event: 0.025 loading class java/lang/Short
+Event: 0.025 loading class java/lang/Short done
+Event: 0.025 loading class java/lang/Integer
+Event: 0.025 loading class java/lang/Integer done
+Event: 0.025 loading class java/lang/Long
+Event: 0.025 loading class java/lang/Long done
+Event: 0.026 loading class java/lang/NullPointerException
+Event: 0.026 loading class java/lang/NullPointerException done
+Event: 0.026 loading class java/lang/ArithmeticException
+Event: 0.026 loading class java/lang/ArithmeticException done
+
+
+Dynamic libraries:
+0x00007ff722380000 - 0x00007ff7223d1000 	C:\Users\couly\OneDrive\Documents\NetBeansJDKs\zulu8.70.0.23-ca-jdk8.0.372-win_x64\zulu8.70.0.23-ca-jdk8.0.372-win_x64\bin\java.exe
+0x00007ff9188f0000 - 0x00007ff918b1e000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ff917810000 - 0x00007ff9178d6000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ff9161f0000 - 0x00007ff91654a000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ff918420000 - 0x00007ff9184d0000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ff916d60000 - 0x00007ff916e07000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ff918620000 - 0x00007ff9186c0000 	C:\WINDOWS\System32\sechost.dll
+0x00007ff917a30000 - 0x00007ff917b55000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ff916ba0000 - 0x00007ff916d51000 	C:\WINDOWS\System32\USER32.dll
+0x00007ff916080000 - 0x00007ff9160a7000 	C:\WINDOWS\System32\win32u.dll
+0x00007ff916e20000 - 0x00007ff916e49000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ff915ea0000 - 0x00007ff915fbf000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ff915fd0000 - 0x00007ff916075000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ff9160b0000 - 0x00007ff9161e3000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ff9011c0000 - 0x00007ff901451000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.25915.1000_none_879502b3ab851761\COMCTL32.dll
+0x00007ff917b60000 - 0x00007ff917b90000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007ff912de0000 - 0x00007ff912df5000 	C:\Users\couly\OneDrive\Documents\NetBeansJDKs\zulu8.70.0.23-ca-jdk8.0.372-win_x64\zulu8.70.0.23-ca-jdk8.0.372-win_x64\jre\bin\vcruntime140.dll
+0x00007ff8e4510000 - 0x00007ff8e45ab000 	C:\Users\couly\OneDrive\Documents\NetBeansJDKs\zulu8.70.0.23-ca-jdk8.0.372-win_x64\zulu8.70.0.23-ca-jdk8.0.372-win_x64\jre\bin\msvcp140.dll
+0x0000000055e60000 - 0x00000000566d1000 	C:\Users\couly\OneDrive\Documents\NetBeansJDKs\zulu8.70.0.23-ca-jdk8.0.372-win_x64\zulu8.70.0.23-ca-jdk8.0.372-win_x64\jre\bin\server\jvm.dll
+0x00007ff918410000 - 0x00007ff918418000 	C:\WINDOWS\System32\PSAPI.DLL
+0x00007ff8df1f0000 - 0x00007ff8df1f9000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007ff8fc560000 - 0x00007ff8fc594000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ff912830000 - 0x00007ff91283a000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ff918390000 - 0x00007ff918403000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ff914c50000 - 0x00007ff914c68000 	C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+0x00007ff912da0000 - 0x00007ff912db0000 	C:\Users\couly\OneDrive\Documents\NetBeansJDKs\zulu8.70.0.23-ca-jdk8.0.372-win_x64\zulu8.70.0.23-ca-jdk8.0.372-win_x64\jre\bin\verify.dll
+0x00007ff909320000 - 0x00007ff90934b000 	C:\Users\couly\OneDrive\Documents\NetBeansJDKs\zulu8.70.0.23-ca-jdk8.0.372-win_x64\zulu8.70.0.23-ca-jdk8.0.372-win_x64\jre\bin\java.dll
+0x00007ff9123e0000 - 0x00007ff9123f8000 	C:\Users\couly\OneDrive\Documents\NetBeansJDKs\zulu8.70.0.23-ca-jdk8.0.372-win_x64\zulu8.70.0.23-ca-jdk8.0.372-win_x64\jre\bin\zip.dll
+
+VM Arguments:
+java_command: C:\Users\couly\OneDrive\Documents\NetBeansProjects\AppMuseeServer\dist\AppMuseeServer.jar
+java_class_path (initial): C:\Users\couly\OneDrive\Documents\NetBeansProjects\AppMuseeServer\dist\AppMuseeServer.jar
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\xampp\php;C:\composer;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files (x86)\Microsoft SQL Server\160\Tools\Binn\;C:\Program Files\Microsoft SQL Server\160\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Azure Data Studio\bin;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Users\couly\AppData\Local\Microsoft\WindowsApps;C:\Users\couly\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\couly\.dotnet\tools;C:\Users\couly\AppData\Roaming\Composer\vendor\bin;C:\Users\couly\AppData\Roaming\npm;C:\Program Files\Azure Data Studio\bin;
+USERNAME=couly
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 158 Stepping 10, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 11 , 64 bit Build 25915 (10.0.25915.1000)
+
+CPU:total 12 (initial active 12) (6 cores per cpu, 2 threads per core) family 6 model 158 stepping 10, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx
+
+Memory: 4k page, physical 16623220k(6446136k free), swap 16624244k(7720k free)
+
+vm_info: OpenJDK 64-Bit Server VM (25.372-b07) for windows-amd64 JRE (Zulu 8.70.0.23-CA-win64) (1.8.0_372-b07), built on Apr 18 2023 08:42:41 by "tester" with MS VC++ 15.9 (VS2017)
+
+time: Sun Jul 30 18:45:27 2023
+timezone: Greenwich
+elapsed time: 1.040147 seconds (0d 0h 0m 1s)
+

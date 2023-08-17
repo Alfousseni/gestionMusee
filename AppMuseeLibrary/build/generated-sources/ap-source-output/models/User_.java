@@ -10,7 +10,7 @@ import models.Exposition;
 import models.Oeuvre;
 import models.Visiteur;
 
-@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2023-07-08T18:00:22")
+@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2023-08-06T20:09:21")
 @StaticMetamodel(User.class)
 public class User_ { 
 

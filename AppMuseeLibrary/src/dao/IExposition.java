@@ -16,6 +16,8 @@ import models.Exposition;
 public interface IExposition extends Remote {
     Exposition addExposition(Exposition e) throws RemoteException;
     Exposition findExpositionByname(String name) throws RemoteException;
+    Exposition updateExposition(Exposition e) throws RemoteException;
+    void deleteExposition(int id) throws RemoteException;
     List<Exposition> allExposition() throws RemoteException;
     List<Exposition> allExpositionDispo() throws RemoteException;
 
